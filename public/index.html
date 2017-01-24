@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <title>Busca Ativa Escolar</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="state-not-submitted">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <section class="box">
+                    <div class="box-container center-block">
+                        <header class="text-center">
+                            <img class="logo" src="images/topo_logos_unicef@2x.png" class="img-responsive"  height="160" title="Busca Ativa Escolar" alt="Busca Ativa Escolar"/>
+                        </header>
+                        <article class="stateful if-not-submitted if-submitting">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <form name="formSurvey" class="clearfix">
+                                        <div class="form-group">
+                                            <div id="error-message" class="stateful if-failed-to-submit alert alert-danger"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="user_email">Email do Agente *</label>
+                                            <input type="text" class="form-control" id="user_email" name="user_email" placeholder="E-mail do Agente">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reportee_name">Nome completo da crian&ccedil;a *</label>
+                                            <span class="input-helper pull-right hidden-xs">Sem abrevia&ccedil;&otilde;es</span>
+                                            <input type="text" class="form-control" id="reportee_name" name="reportee_name" placeholder="Nome completo da crian&ccedil;a">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reportee_mother_name">Nome da mãe ou responsável *</label>
+                                            <span class="input-helper pull-right hidden-xs">Sem abrevia&ccedil;&otilde;es</span>
+                                            <input type="text" class="form-control" id="reportee_mother_name" name="reportee_mother_name" placeholder="Nome completo do respons&aacute;vel">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reportee_birthdate">Data de nascimento da crian&ccedil;a</label>
+                                            <input type="text" class="form-control" id="reportee_birthdate" name="reportee_birthdate" placeholder="01/01/2015">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">Endere&ccedil;o *</label>
+                                            <input type="text" class="form-control" id="address" name="address" placeholder="Endere&ccedil;o">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="district">Bairro *</label>
+                                            <input type="text" class="form-control" id="district" name="district" placeholder="Bairro">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="number">N&uacute;mero</label>
+                                            <input type="text" class="form-control" id="number" name="number" placeholder="N&uacute;mero">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reference">Refer&ecirc;ncia</label>
+                                            <input type="text" class="form-control" id="reference" name="reference" placeholder="Refer&ecirc;ncia">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="municipio">Município</label>
+                                            <select type="text" class="form-control" id="municipio" name="municipio" placeholder="municipio">
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="uf">UF</label>
+                                            <select type="text" class="form-control" id="uf" name="uf" placeholder="UF">
+                                            </select>
+                                        </div>                                                                                
+                                        <div class="form-group-options">
+                                            <label>Por que a criança ou adolescente esta fora da escola? *</label>
+                                            <p class="help-block">Selecione a principal causa identificada</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <p class="causes-error"><img src="images/warning.gif" width="16" height="16"> Por favor, selecione uma das opções abaixo.</p>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Adolescente em conflito com a lei
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Criança ou adolescente com deficiência(s)
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Criança ou adolescente com doença(s) que impeça(m) ou dificulte(m) a frequência à escola
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Criança ou adolescente em abrigo 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Criança ou adolescente em situação de rua 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Criança ou adolescente vítima de abuso / violência sexual 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Evasão porque sente a escola desinteressante 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Falta de documentação da criança ou adolescente 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Falta de infraestrutura escolar 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Falta de transporte escolar 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Gravidez na adolescência 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Preconceito ou discriminação racial 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Trabalho infantil 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Uso, abuso ou dependência de substâncias psicoativas 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Violência familiar 
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="probable_cause" id="optionsRadios#VALUE#" value="#VALUE#">
+                                                    Violência na escola 
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button id="btnSend" type="submit" class="stateful if-not-submitted btn btn-send btn-block">Enviar</button>
+                                            <button type="button" disabled class="stateful if-submitting btn btn-send btn-block">Enviando...</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="stateful if-submitted-successfully" id="success-screen">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img width="100" height="100" src="images/check.png">
+                                </div>
+                                <div class="col-xs-9 phrase">
+                                    <h2>Alerta enviado com sucesso!</h2>
+                                    <p><a href="/">Clique aqui para realizar um novo alerta</a> </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+                        <a href="http://www.congemas.org.br/?utm_source=PageWeb_BuscaAtivaEscolar" target="_blank">
+                           <img class="img-responsive"  src="images/logo_congemas.png" alt="CONGEMAS" title="CONGEMAS" >
+                        </a>
+                </div>
+
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                        <a href="https://undime.org.br/?utm_source=PageWeb_BuscaAtivaEscolar" target="_blank">
+                           <img src="images/logo_undime.png"  alt="UNDIME" title="UNDIME">
+                        </a>
+                </div>
+
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <a href="http://unicef.org.br/?utm_source=PageWeb_BuscaAtivaEscolar" target="_blank">
+                            <img  class="unicef-logo" src="images/logo_unicef.png"  alt="UNICEF" title="UNICEF">
+                        </a>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <a href="https://institutotim.org.br/?utm_source=PageWeb_BuscaAtivaEscolar" target="_blank">desenvolvido por
+                        <img src="images/logo_instituto_tim.png" height="27px" alt="Instituto TIM" title="Instituto TIM">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        var ZUP_API_URL = '{ZUP_API_URL}';
+        var LANDING_API_URL = '{LANDING_API_URL}';
+    </script>
+    <!-- @if NODE_ENV='development' -->
+    <script src="vendor/aja/src/aja.js"></script>
+    <script src="vendor/validatinator/dev/js/validatinator.core.js"></script>
+    <script src="vendor/validatinator/dev/js/validatinator.messages.js"></script>
+    <script src="vendor/validatinator/dev/js/validatinator.polyfill.js"></script>
+    <script src="vendor/validatinator/dev/js/validatinator.utils.js"></script>
+
+    <script src="js/all.js"></script>
+    <!-- @endif -->
+    <!-- @if NODE_ENV='production' -->
+    <script type="text/javascript" src="scripts/app.min.js"></script>
+    <!-- @endif -->
+</body>
+</html>

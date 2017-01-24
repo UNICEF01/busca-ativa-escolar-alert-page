@@ -1,0 +1,30 @@
+{
+  "name": "busca-ativa-escolar-alert-page",
+  "version": "1.0.0",
+  "description": "Página de envio de alertas",
+  "author": "Antonio Castanheira <antonio.augusto.castanheira@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antoniocastanheira/busca-ativa-escolar-alert-page.git"
+  },
+  "license": "Aferro GPL v3",
+  "bugs": {
+    "url": "https://github.com/antoniocastanheira/busca-ativa-escolar-alert-page/issues"
+  },
+  "homepage": "https://github.com/antoniocastanheira/busca-ativa-escolar-alert-page#readme",
+  "devDependencies": {
+    "dotenv": "^1.2.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.0.0",
+    "jshint": "^2.9.4"
+  }
+}

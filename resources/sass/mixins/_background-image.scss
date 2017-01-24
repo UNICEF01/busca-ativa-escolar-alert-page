@@ -1,0 +1,15 @@
+@mixin background-image($image, $position: center center, $repeat: no-repeat, $attachment: scroll, $size: cover) {
+  background-image: url($image);
+  @if $position {
+    background-position: $position;
+  }
+  @if $repeat {
+    background-repeat: $repeat;
+  }
+  @if $attachment {
+    background-attachment: $attachment;
+  }
+  @if $size {
+    background-size: $size;
+  }
+}

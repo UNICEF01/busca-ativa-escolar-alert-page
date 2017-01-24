@@ -1,0 +1,4 @@
+@include font-face("Open Sans", "/resources/fonts/opensans-regular-webfont", $file-formats: eot svg ttf woff);
+@include font-face("Open Sans", "/resources/fonts/opensans-bold-webfont", bold, $file-formats: eot svg ttf woff);
+@include font-face("Open Sans", "/resources/fonts/opensans-italic-webfont", normal, italic, $file-formats: eot svg ttf woff);
+@include font-face("Open Sans", "/resources/fonts/opensans-bolditalic-webfont", bold, italic, $file-formats: eot svg ttf woff);

@@ -1,0 +1,21 @@
+{
+  "name": "busca-ativa-escolar-alert-page",
+  "version": "1.0.0",
+  "description": "Página de envio de alertas",
+  "main": "index.js",
+  "authors": [
+    "Antonio Castanheira <antonio.augusto.castanheira@gmail.com>"
+  ],
+  "license": "AGPLv3",
+  "homepage": "https://github.com/antoniocastanheira/busca-ativa-escolar-alert-page",
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,215 @@
+/**
+ * Vendors
+ */
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/type";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/forms";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/utilities";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+/**
+ * Internal Libraries
+ */
+@import "variables";
+@import "mixins";
+@import "base/fonts";
+@import "base/reset";
+
+/**
+ * Application states
+ */
+.stateful {
+  display: none;
+}
+
+.state-not-submitted .if-not-submitted {
+  display: block;
+}
+
+.state-submitting .if-submitting {
+  display: block;
+}
+
+.state-submitted-successfully .if-submitted-successfully {
+  display: block;
+}
+
+.state-failed-to-submit .if-failed-to-submit {
+  display: block;
+}
+
+body {
+  color: $body-color;
+  font-family: 'Open Sans', Arial, sans-serif;
+  background-color: $body-background-color;
+}
+
+section.box {
+  margin: 35px 0;
+
+  header {
+    padding: 25px 10px 0px 0px;
+  }
+
+  #success-screen {
+    .phrase {
+      margin-left: -20px;
+
+      a {
+        font-size: 16px;
+        color: #fff;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    img {
+      margin-left: 20px;
+    }
+
+    padding-bottom: 20px;
+  }
+
+  .box-container {
+    max-width: 560px;
+
+    /* IE 6-8 Fallback */
+    background: url(../images/quadro_inteiro.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* IE 6-8 Fallback */
+    background: -moz-radial-gradient(50% 20%, circle closest-corner, #2FBEFF 0, #177fbb 100%); /* FF3.6+ */
+    background: -webkit-radial-gradient(50% 20%, circle closest-corner, #2FBEFF 0, #177fbb 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(50% 20%, circle closest-corner, #2FBEFF 0, #177fbb 100%); /* Opera 11.10+ */
+    background: -ms-radial-gradient(50% 20%, circle closest-corner, #2FBEFF 0, #177fbb 100%); /* IE10+ */
+    background: radial-gradient(50% 20%, circle closest-corner, #2FBEFF 0, #177fbb 100%); /* W3C */
+
+    @include border-top-radius(4px);
+    @include border-right-radius(4px);
+    @include border-bottom-radius(4px);
+    @include border-left-radius(4px);
+    @include box-shadow(0 0 5px 2px rgba(18, 104, 154, 0.5));
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+
+    &.input-error {
+      .form-control {
+        border-color: $form-error-input-border-color;
+        background-color: $form-error-input-background-color;
+      }
+    }
+
+    label {
+      font-size: 15px;
+      color: $form-label-color;
+    }
+
+    label ~ .help-block {
+      margin-top: 0;
+    }
+
+    .input-helper {
+      font-size: 13px;
+      color: $form-description-color;
+    }
+
+    .help-block {
+      font-size: 14px;
+      color: $form-label-color;
+    }
+  }
+
+  .form-group-options {
+    @extend .form-group;
+    margin-top: 35px;
+  }
+
+  .form-group,
+  .checkbox {
+    padding: 0 75px;
+  }
+
+  .form-control {
+    height: 40px;
+    padding: 6px 20px;
+
+    &:focus {
+      border-color: #0088FB;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=45, Color=#0A5C8C)"; /*IE 8*/
+      -moz-box-shadow: -1px 1px 4px 4px rgba(10, 92, 140, 0.29); /*FF 3.5+*/
+      -webkit-box-shadow: -1px 1px 4px 4px rgba(10, 92, 140, 0.29); /*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
+      box-shadow: -1px 1px 4px 4px rgba(10, 92, 140, 0.29); /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+      filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#0A5C8C); /*IE 5.5-7*/
+    }
+  }
+
+  .radio label {
+    min-height: 33px;
+    display: block;
+    input {
+      margin-top: 2px;
+    }
+  }
+
+  .btn-send {
+    font-size: 14px;
+    font-weight: 600;
+    @include button-variant($btn-send-color, $btn-send-bg, $btn-send-border);
+  }
+
+  .loading-causes {
+    line-height: 40px;
+    font-weight: bold;
+
+    img {
+      margin-right: 10px;
+    }
+  }
+
+  .causes-error {
+    display: none;
+    color: #ff585b;
+    margin-bottom: 20px;
+
+    img {
+      margin-top: -3px;
+    }
+  }
+
+  .input-error .causes-error {
+    display: block;
+  }
+}
+
+
+footer {
+    border-top: 15px solid #0c5e8e;
+    padding: 25px 0;
+    background-color: #fff;
+}
+    .unicef-logo{
+      margin-top: 10px;
+      height: 40px;
+    }
+
+@media (max-width: $screen-xs-max) {
+  section.box {
+    .form-group,
+    .radio,
+    .checkbox {
+      padding: 0 15px;
+    }
+  }
+}
