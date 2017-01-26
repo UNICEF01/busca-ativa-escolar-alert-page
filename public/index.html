@@ -12,6 +12,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+       
 </head>
 <body class="state-not-submitted">
     <div class="container">
@@ -20,7 +21,7 @@
                 <section class="box">
                     <div class="box-container center-block">
                         <header class="text-center">
-                            <img class="logo" src="images/topo_logos_unicef@2x.png" class="img-responsive"  height="160" title="Busca Ativa Escolar" alt="Busca Ativa Escolar"/>
+                            <img class="logo" src="images/topo_logos_unicef@2x.png" class="img-responsive" height="220" title="Busca Ativa Escolar" alt="Busca Ativa Escolar"/>
                         </header>
                         <article class="stateful if-not-submitted if-submitting">
                             <div class="row">
@@ -64,15 +65,16 @@
                                             <input type="text" class="form-control" id="reference" name="reference" placeholder="Refer&ecirc;ncia">
                                         </div>
                                         <div class="form-group">
-                                            <label for="municipio">Município</label>
-                                            <select type="text" class="form-control" id="municipio" name="municipio" placeholder="municipio">
+                                            <label for="uf">Estado *</label>
+                                            <select id="estados" type="text" class="form-control" id="uf" name="uf" placeholder="UF">
+                                                 <option value=""></option>
                                             </select>
-                                        </div>
+                                        </div>                             
                                         <div class="form-group">
-                                            <label for="uf">UF</label>
-                                            <select type="text" class="form-control" id="uf" name="uf" placeholder="UF">
+                                            <label for="municipio">Município *</label>
+                                            <select id="cidades" type="text" class="form-control" id="municipio" name="municipio" placeholder="municipio">
                                             </select>
-                                        </div>                                                                                
+                                        </div>                                                                          
                                         <div class="form-group-options">
                                             <label>Por que a criança ou adolescente esta fora da escola? *</label>
                                             <p class="help-block">Selecione a principal causa identificada</p>
@@ -196,29 +198,54 @@
 
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <a href="https://institutotim.org.br/?utm_source=PageWeb_BuscaAtivaEscolar" target="_blank">desenvolvido por
-                        <img src="images/logo_instituto_tim.png" height="27px" alt="Instituto TIM" title="Instituto TIM">
-                    </a>
+                            <img src="images/logo_instituto_tim.png" height="27px" alt="Instituto TIM" title="Instituto TIM">
+                        </a>
                 </div>
             </div>
         </div>
     </footer>
 
 
-    <script>
-        var ZUP_API_URL = '{ZUP_API_URL}';
-        var LANDING_API_URL = '{LANDING_API_URL}';
+    <script src="vendor/jquery/dist/jquery.js"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function () {
+        
+            $.getJSON('data/cities.json', function (data) {
+                var items = [];
+                var options = '<option value="">Escolha um estado</option>';    
+                $.each(data, function (key, val) {
+                    options += '<option value="' + val.nome + '">' + val.nome + '</option>';
+                });                 
+                $("#estados").html(options);                
+                
+                $("#estados").change(function () {              
+                
+                    var options_cidades = '';
+                    var str = "";                   
+                    
+                    $("#estados option:selected").each(function () {
+                        str += $(this).text();
+                    });
+                    
+                    $.each(data, function (key, val) {
+                        if(val.nome == str) {                           
+                            $.each(val.cidades, function (key_city, val_city) {
+                                options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
+                            });                         
+                        }
+                    });
+                    $("#cidades").html(options_cidades);
+                    
+                }).change();        
+            
+            });
+        });
+        
     </script>
-    <!-- @if NODE_ENV='development' -->
-    <script src="vendor/aja/src/aja.js"></script>
-    <script src="vendor/validatinator/dev/js/validatinator.core.js"></script>
-    <script src="vendor/validatinator/dev/js/validatinator.messages.js"></script>
-    <script src="vendor/validatinator/dev/js/validatinator.polyfill.js"></script>
-    <script src="vendor/validatinator/dev/js/validatinator.utils.js"></script>
-
     <script src="js/all.js"></script>
     <!-- @endif -->
     <!-- @if NODE_ENV='production' -->
-    <script type="text/javascript" src="scripts/app.min.js"></script>
+   <!-- <script type="text/javascript" src="js/all.min.js"></script>-->
     <!-- @endif -->
 </body>
 </html>
