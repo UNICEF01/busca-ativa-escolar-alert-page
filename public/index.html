@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
     <title>Busca Ativa Escolar</title>
-    <link rel="stylesheet" href="css/main.css" />
+<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ -->    <link rel="stylesheet" href="css/main.css" />
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-       
+
 </head>
 <body class="state-not-submitted">
     <div class="container">
@@ -26,13 +27,24 @@
                         <article class="stateful if-not-submitted if-submitting">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <p style="font-weight: bold;">Para enviar um alerta, preencha o formulário a seguir com as informações sobre a criança ou o adolescente fora da escola.</label>
+                                                                               
+                                        <p class="help-block"> Campos marcados com (*) são obrigatórios.</p>
+                                    </div>
                                     <form name="formSurvey" class="clearfix">
                                         <div class="form-group">
                                             <div id="error-message" class="stateful if-failed-to-submit alert alert-danger"></div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="user_email">Email do Agente *</label>
-                                            <input type="text" class="form-control" id="user_email" name="user_email" placeholder="E-mail do Agente">
+                                            <label for="user_email">E-mail do agente comunitário *
+                                                <a href="#" data-toggle="tooltip" title="O agente comunitário é quem faz o alerta sobre uma criança ou adolescente fora da escola. Neste campo, deve ser colocado o mesmo email utilizado no cadastro.">
+
+                                                 <img  src="images/tooltip.png" height="20px" />
+                                            </a>
+                                            </label> 
+                                            <input type="text" class="form-control" id="user_email" name="user_email" placeholder="E-mail do agente comunitário">                        
+
                                         </div>
                                         <div class="form-group">
                                             <label for="reportee_name">Nome completo da crian&ccedil;a *</label>
@@ -40,9 +52,9 @@
                                             <input type="text" class="form-control" id="reportee_name" name="reportee_name" placeholder="Nome completo da crian&ccedil;a">
                                         </div>
                                         <div class="form-group">
-                                            <label for="reportee_mother_name">Nome da mãe ou responsável *</label>
+                                            <label for="reportee_mother_name">Nome do pai/mãe ou responsável *</label>
                                             <span class="input-helper pull-right hidden-xs">Sem abrevia&ccedil;&otilde;es</span>
-                                            <input type="text" class="form-control" id="reportee_mother_name" name="reportee_mother_name" placeholder="Nome completo do respons&aacute;vel">
+                                            <input type="text" class="form-control" id="reportee_mother_name" name="reportee_mother_name" placeholder="Nome do pai/mãe ou respons&aacute;vel">
                                         </div>
                                         <div class="form-group">
                                             <label for="reportee_birthdate">Data de nascimento da crian&ccedil;a</label>
@@ -76,8 +88,8 @@
                                             </select>
                                         </div>                                                                          
                                         <div class="form-group-options">
-                                            <label>Por que a criança ou adolescente esta fora da escola? *</label>
-                                            <p class="help-block">Selecione a principal causa identificada</p>
+                                            <label>Por que a criança ou adolescente est fora da escola? *</label>
+                                            <p class="help-block"> Escolha o principal motivo identificado</p>
                                         </div>
 
                                         <div class="form-group">
@@ -151,7 +163,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <button id="btnSend" type="submit" class="stateful if-not-submitted btn btn-send btn-block">Enviar</button>
+                                            <button id="btnSend" type="button" class="stateful if-not-submitted btn btn-send btn-block" data-toggle="modal" data-target="#myModal">Enviar</button>
                                             <button type="button" disabled class="stateful if-submitting btn btn-send btn-block">Enviando...</button>
                                         </div>
                                     </form>
@@ -205,8 +217,33 @@
         </div>
     </footer>
 
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Atenção</h4>
+          </div>
+          <div class="modal-body">
+            <h5 style="font-weight: bold;">Todos os dados sobre a crianças ou o adolescente informados neste formulário são confidenciais e não podem ser divulgados fora da Busca Ativa Escolar.</h5>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Confirmar</button>
+          </div>
+        </div>
+
+
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });
+    </script>
 
     <script src="vendor/jquery/dist/jquery.js"></script>
+    <script src="vendor/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
     <script type="text/javascript"> 
         $(document).ready(function () {
         
