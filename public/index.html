@@ -15,9 +15,38 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+        form .ng-submitted.ng-invalid input {
+         border: 1px solid red;
+    }
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 5px 5px 5px;
+  margin: 1px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+    </style>
 
 </head>
-<body class="state-not-submitted" ng-controller="formCtrl">
+<body ng-class="class" ng-controller="formCtrl">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -34,50 +63,71 @@
                                                                                
                                         <p class="help-block"> Campos marcados com (*) são obrigatórios.</p>
                                     </div>
-                                    <form name="alertForm" class="clearfix">
+                    
+                                    <form name="form" class="clearfix" novalidate="novalidate"">     
+                          
                                         <div class="form-group">
-                                            <div id="error-message" class="stateful if-failed-to-submit alert alert-danger"></div>
-                                        </div>
-                                        <div class="form-group">
+
                                             <label for="user_email">E-mail do agente comunitário *
                                                 <a href="#" data-toggle="tooltip" title="O agente comunitário é quem faz o alerta sobre uma criança ou adolescente fora da escola. Neste campo, deve ser colocado o mesmo email utilizado no cadastro.">
-
                                                  <img  src="images/tooltip.png" height="20px" />
-                                            </a>
+                                                </a>
                                             </label> 
-                                            <input type="text" class="form-control"  name="user_email" placeholder="E-mail do agente comunitário" id="ldp-user_email" ng-model="alert.user_email">                        
+                                            <input type="email" class="form-control"  name="user_email" placeholder="E-mail do agente comunitário" id="ldp_email" ng-model="alert.email" required="Campo email é obrigatório">                        
+                                            <div ng-show="form.$submitted || form.user_email.$touched">
+                                              <span ng-show="form.user_email.$error.required">Email é obrigatório.</span>
+                                              <span ng-show="form.user_email.$error.email">Email inválido.</span>
+                                             </div>
 
                                         </div>
                                         <div class="form-group">
-                                            <label for="reportee_name">Nome completo da crian&ccedil;a *</label>
+                                            <label for="name">Nome completo da crian&ccedil;a *</label>
                                             <span class="input-helper pull-right hidden-xs">Sem abrevia&ccedil;&otilde;es</span>
-                                            <input type="text" class="form-control" name="reportee_name" placeholder="Nome completo da crian&ccedil;a" id="ldp-name" ng-model="alert.name">
+                                            <input type="text" class="form-control" name="name" placeholder="Nome completo da crian&ccedil;a" id="ldp-name" ng-model="alert.name" required>
+                                            <div ng-show="form.$submitted || form.name.$touched">
+                                              <span ng-show="form.name.$error.required">Nome é obrigatório.</span>
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="reportee_mother_name">Nome do pai/mãe ou responsável *</label>
+                                            <label for="mother_name">Nome do pai/mãe ou responsável *</label>
                                             <span class="input-helper pull-right hidden-xs">Sem abrevia&ccedil;&otilde;es</span>
-                                            <input type="text" class="form-control" name="reportee_mother_name" placeholder="Nome do pai/mãe ou respons&aacute;vel" id="ldp-mother-name" ng-model="alert.mother_name">
+                                            <input type="text" class="form-control" name="mother_name" placeholder="Nome do pai/mãe ou respons&aacute;vel" id="ldp-mother-name" ng-model="alert.mother_name" required>
+                                            <div ng-show="form.$submitted || form.mother_name.$touched">
+                                              <span ng-show="form.mother_name.$error.required">Responsável é obrigatório.</span>
+                                            </div>
+
                                         </div>
                                         <div class="form-group">
-                                            <label for="reportee_birthdate">Data de nascimento da crian&ccedil;a</label>
-                                            <input type="text" class="form-control" name="reportee_birthdate" placeholder="01/01/2015" id="ldp-dob" ng-model="alert.dob" ui-date-mask>
+                                            <label for="birthdate">Data de nascimento da crian&ccedil;a</label>
+                                            <input type="text" class="form-control" name="birthdate" placeholder="01/01/2015" id="ldp-dob" ng-model="alert.dob" ui-time-mask="DD-MM-YYYY">
                                         </div>
                                         <div class="form-group">
                                             <label for="address">Endere&ccedil;o *</label>
-                                            <input type="text" class="form-control" name="address" placeholder="Endere&ccedil;o" id="ldp-address" ng-model="alert.place_address">
+                                            <input type="text" class="form-control" name="address" placeholder="Endere&ccedil;o" id="ldp-address" ng-model="alert.place_address" required>
+                                            <div ng-show="form.$submitted || form.address.$touched">
+                                              <span ng-show="form.address.$error.required">Endereço é obrigatório.</span>
+                                            </div>
+
                                         </div>
                                         <div class="form-group">
                                             <label for="district">Bairro *</label>
-                                            <input type="text" class="form-control" name="district" placeholder="Bairro" id="ldp-neighborhood" ng-model="alert.place_neighborhood">
+                                            <input type="text" class="form-control" name="district" placeholder="Bairro" id="ldp-neighborhood" ng-model="alert.place_neighborhood" required>
+                                            <div ng-show="form.$submitted || form.district.$touched">
+                                              <span ng-show="form.district.$error.required">Bairro é obrigatório.</span>
+                                            </div>
+
                                         </div>
                                         <div class="form-group">
                                             <label for="reference">Refer&ecirc;ncia</label>
-                                            <input type="text" class="form-control" name="reference" placeholder="Refer&ecirc;ncia"  id="ldp-reference" ng-model="alert.place_referene">
+                                            <input type="text" class="form-control" name="reference" placeholder="Refer&ecirc;ncia"  id="ldp-reference" ng-model="alert.place_referene">                                            
                                         </div>
                                         <div class="form-group">
 
                                         <label class="control-label" for="ldp-uf">UF*</label>
-                                        <select class="form-control" id="ldp-uf" ng-model="alert.place_uf" ng-options="uf.code as uf.code for uf in static.getUFs()"></select>
+                                        <select class="form-control" id="ldp-uf" name="uf" ng-model="alert.place_uf" ng-options="uf.code as uf.code for uf in static.getUFs()" required></select>
+                                        <div ng-show="form.$submitted || form.uf.$touched">
+                                          <span ng-show="form.uf.$error.required">UF é obrigatório.</span>
+                                        </div>
 
                                         <script type="text/ng-template" id="city_item.html">
                                             <a>
@@ -89,7 +139,9 @@
                                         </div>                             
                                         <div class="form-group">
                                         <label class="control-label" for="ldp-city">Município*</label>
+
                                         <input type="text" id="ldp-city"
+                                               name="city_name"
                                                class="form-control"
                                                ng-model="alert.place_city"
                                                uib-typeahead="city for city in fetchCities($viewValue)"
@@ -100,7 +152,11 @@
                                                typeahead-template-url="city_item.html"
                                                typeahead-wait-ms="400"
                                                typeahead-min-length="3"
-                                               typeahead-input-formatter="renderSelectedCity($model)">
+                                               typeahead-input-formatter="renderSelectedCity($model)"
+                                               required>
+                                        <div ng-show="form.$submitted || form.city_name.$touched">
+                                            <span ng-show="form.city_name.$error.required">Município é obrigatório.</span>
+                                        </div>                                               
                                         
                                         <div ng-show="citiesLoading">
                                             <i class="fa fa-refresh rotate-icon"></i> Buscando cidades...
@@ -114,6 +170,9 @@
                                             <div class="form-group-options">
                                             <label>Por que a criança ou adolescente está fora da escola? *</label>
                                             <p class="help-block"> Escolha o principal motivo identificado</p>
+                                            <div ng-show="form.$submitted || form.alert_cause_id.$touched">
+                                              <span ng-show="form.alert_cause_id.$error.required">Causa é obrigatório.</span>
+                                            </div>                                            
                                         </div>
 
                                         <div class="form-group">
@@ -127,12 +186,31 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <button id="btnSend" type="button" class="stateful if-not-submitted btn btn-send btn-block" data-toggle="modal" data-target="#myModal">Enviar</button>
-                                            <button type="button" disabled class="stateful if-submitting btn btn-send btn-block">Enviando...</button>
-                                        </div>
-                                    </form>
-                                            <a class="btn btn-primary" ng-click="window.alert('hello!')">Enviar alerta</a>
 
+                                            <button id="btnSend" type="button" class="stateful if-not-submitted btn btn-send btn-block" data-toggle="modal" type="submit" data-target="#myModal">Enviar</button>
+                                        </div>
+                                         <!-- Modal -->
+                                        <div id="myModal" class="modal fade" role="dialog">
+                                          <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h4 class="modal-title">Atenção</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <h5 style="font-weight: bold;">Todos os dados sobre a crianças ou o adolescente informados neste formulário são confidenciais e não podem ser divulgados fora da Busca Ativa Escolar.</h5>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                <input type="submit" class="btn btn-default" ng-click="createAlert(alert)"  value="Confirmar"></input>
+
+                                              </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                    </form>
                                 </div>
                             </div>
                         </article>
@@ -153,11 +231,6 @@
             </div>
         </div>
     </div>
-  Name: <input ng-model="name" type="text"/>
-  <button ng-click="greet()">Greet</button>
-  <button ng-click="window.alert('Should not see me')">Won't greet</button>
-
-
 
     <!-- Footer -->
     <footer>
@@ -190,23 +263,6 @@
         </div>
     </footer>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Atenção</h4>
-          </div>
-          <div class="modal-body">
-            <h5 style="font-weight: bold;">Todos os dados sobre a crianças ou o adolescente informados neste formulário são confidenciais e não podem ser divulgados fora da Busca Ativa Escolar.</h5>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Confirmar</button>
-          </div>
-        </div>
 
 
     <script src="vendor/angular/angular.js"></script>
@@ -214,7 +270,7 @@
     <script src="vendor/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="vendor/angular-ui-select/dist/select.js"></script>
-
+    <script src="vendor/angular-input-masks/angular-input-masks-standalone.min.js"></script>
     <script src="vendor/jquery/dist/jquery.js"></script>
     <script src="vendor/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
     <script src="js/all.js"></script>

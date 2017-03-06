@@ -2244,10 +2244,35 @@ html, body {
   display: block; }
 
 .state-submitted-successfully .if-submitted-successfully {
-  display: block; }
+  display: block;
+  padding-bottom: 20px;
+  padding-left: 240px;
+  padding-top: 40px; }
 
 .state-failed-to-submit .if-failed-to-submit {
   display: block; }
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 5px 5px 5px;
+  margin: 1px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
 
 body {
   color: #FFF;
@@ -2526,15 +2551,6 @@ section.box {
   display: block;
   margin-left: auto;
   margin-right: auto; }
-
-.dropdown-menu > li > a {
-  display: block;
-  padding: 3px 20px;
-  clear: both;
-  font-weight: normal;
-  line-height: 1.42857143;
-  color: #333;
-  white-space: nowrap; }
 
 footer {
   border-top: 15px solid #0c5e8e;
