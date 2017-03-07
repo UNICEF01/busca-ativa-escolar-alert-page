@@ -18,7 +18,8 @@
     "angular-input-masks": "^2.5.0",
     "angular-bootstrap": "~2.4.0",
     "angular-ui-select": "~0.19.4",
-    "jquery": "^3.1.0"
+    "jquery": "^3.1.0",
+    " angular-popeye":"^1.05"
   },
 
   "ignore": [
