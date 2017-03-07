@@ -1,12 +1,31 @@
 angular.module("BuscaAtivaEscolarAlert", ['ngResource',
             'ui.bootstrap',
             'ui.select',
+            'pathgather.popeye',
 			'ui.utils.masks'
 ]);
 
-angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($scope, $http, Cities, StaticData ) {
+angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootScope, $scope, $http, Cities, StaticData, Popeye ) {
+        
+	$rootScope.isValid;
+	$rootScope.alert;
     
     $scope.static = StaticData;
+    $rootScope.class = "state-not-submitted";
+		
+    $scope.modal = function(valid, alert) {
+       
+        $rootScope.isValid=valid;
+        $rootScope.alert=alert;
+
+	    var modal = Popeye.openModal({
+	      templateUrl: "confirm-dialog.html",
+	      controller: "formCtrl",
+	      closed: {
+	      
+	      }
+	    });
+    };
 
     $scope.fetchCities = function(query) {
         var data = {name: query, $hide_loading_feedback: true};
@@ -24,32 +43,47 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($scope
         return city.uf + ' / ' + city.name;
     };
     
-    $scope.class = "state-not-submitted";
+    $scope.createAlert = function () {
+        console.log($rootScope.isValid);
 
-    $scope.createAlert = function (alert) {
+		console.log('Startando');
 
-		var data = {
-			email: alert.email,
-			name: alert.name,
-			alert_cause_id: alert.alert_cause_id,
-			mother_name: alert.mother_name,
-	        place_address: alert.place_address,
-	        place_neighborhood: alert.place_neighborhood,
-	        place_city_id : alert.place_city.ibge_city_id,
-	        place_city_name: alert.place_city.name,
-	        place_uf: alert.place_uf
-		};
-		
- 		var config = {headers:  {
-			'Content-Type': 'application/json'
-			}
-		};
+		if($rootScope.isValid){
+			//var dateBirth = new Date($rootScope.alert.dob);
+			console.log('success');
+			var data = {
+				email: $rootScope.alert.email,
+				name: $rootScope.alert.name,
+				//dob: dateBirth,
+				place_reference: $rootScope.alert.place_reference,
+				alert_cause_id: $rootScope.alert.alert_cause_id,
+				mother_name: $rootScope.alert.mother_name,
+		        place_address: $rootScope.alert.place_address,
+		        place_neighborhood: $rootScope.alert.place_neighborhood,
+		        place_city_id : $rootScope.alert.place_city.ibge_city_id,
+		        place_city_name: $rootScope.alert.place_city.name,
+		        place_uf: $rootScope.alert.place_uf
+			};
 
-        return $http.post("http://api.busca-ativa-escolar.dev.lqdi.net/api/v1/integration/lp/alert_spawn", JSON.stringify(data), config).then(function(success) {
-           $scope.class = "state-submitted-successfully";
-			angular.element(document.querySelector('#myModal')).modal('hide');
 
-        });
+	 		var config = {
+	 			headers:  {
+					'Content-Type': 'application/json'
+				}
+			};
+
+	        return $http.post("http://api.busca-ativa-escolar.dev.lqdi.net/api/v1/integration/lp/alert_spawn", JSON.stringify(data), config).then(function(success) {
+	           $rootScope.class = "state-submitted-successfully";
+	           Popeye.closeCurrentModal();
+               console.log(success);
+
+
+	        });
+    	}else{
+			Popeye.closeCurrentModal();
+    		console.log("Fail");
+    	}
+    
     };
 });
 
@@ -120,4 +154,3 @@ angular.module('BuscaAtivaEscolarAlert').factory('StaticData', function StaticDa
         .run(function (StaticData) {
             StaticData.refresh();
         });
-
