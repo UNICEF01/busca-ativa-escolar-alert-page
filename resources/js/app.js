@@ -1,8 +1,8 @@
 angular.module("BuscaAtivaEscolarAlert", ['ngResource',
             'ui.bootstrap',
             'ui.select',
-            'pathgather.popeye',
-			'ui.utils.masks'
+            'ui.utils.masks',
+            'pathgather.popeye'
 ]);
 
 angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootScope, $scope, $http, Cities, StaticData, Popeye ) {
@@ -12,7 +12,8 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
     
     $scope.static = StaticData;
     $rootScope.class = "state-not-submitted";
-		
+	$rootScope.message="muda?";
+
     $scope.modal = function(valid, alert) {
        
         $rootScope.isValid=valid;
@@ -44,17 +45,19 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
     };
     
     $scope.createAlert = function () {
+    	$scope.submitted=true;
+
         console.log($rootScope.isValid);
 
 		console.log('Startando');
 
 		if($rootScope.isValid){
-			//var dateBirth = new Date($rootScope.alert.dob);
+			var dateBirth = new Date($rootScope.alert.dob);
 			console.log('success');
 			var data = {
 				email: $rootScope.alert.email,
 				name: $rootScope.alert.name,
-				//dob: dateBirth,
+				dob: dateBirth,
 				place_reference: $rootScope.alert.place_reference,
 				alert_cause_id: $rootScope.alert.alert_cause_id,
 				mother_name: $rootScope.alert.mother_name,
@@ -73,22 +76,30 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
 			};
 
 	        return $http.post("http://api.busca-ativa-escolar.dev.lqdi.net/api/v1/integration/lp/alert_spawn", JSON.stringify(data), config).then(function(success) {
-	           $rootScope.class = "state-submitted-successfully";
-	           Popeye.closeCurrentModal();
-               console.log(success);
-
-
+	             if(success["data"].reason=="invalid_user"){
+	             	console.log(success["data"].reason);
+	             	console.log(success["data"].reason=="invalid_user");
+	             	$scope.message="Sorry bro";
+	     			 Popeye.closeCurrentModal();
+	     			 alert("Usuario não cadastrado")
+	             }else{
+			           $rootScope.class = "state-submitted-successfully";
+			           Popeye.closeCurrentModal();
+		               console.log(success);
+	             }
 	        });
     	}else{
 			Popeye.closeCurrentModal();
-    		console.log("Fail");
+            console.log('Fail');
+
+ 
     	}
     
     };
 });
 
 angular.module('BuscaAtivaEscolarAlert').factory('Cities', function Cities($resource) {
-      headers = {};
+			headers=  {}
 
      return $resource('http://api.busca-ativa-escolar.dev.lqdi.net/api/v1/cities/:id', {id: '@id'}, {
          find: {method: 'GET', headers: headers},

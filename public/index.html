@@ -18,10 +18,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
-        form .ng-submitted.ng-invalid input {
+        form.ng-submitted input.ng-invalid-required, form.ng-submitted select.ng-invalid-required{
              border: 1px solid red;
         }
-
         .popeye-modal{
             color: #000;
         }
@@ -53,10 +52,9 @@
                                         <p style="font-weight: bold;">Para enviar um alerta, preencha o formulário a seguir com as informações sobre a criança ou o adolescente fora da escola.</label>
                                                                                
                                         <p class="help-block"> Campos marcados com (*) são obrigatórios.</p>
-<!--                                         {{form.$valid}}
- -->                                    </div>
+                                    </div>
                     
-                                    <form name="form" class="clearfix" ng-submit="createAlert(form.$valid, alert)" novalidate="novalidate"">     
+                                    <form name="form" class="clearfix" ng-submit="createAlert(form.$valid, alert); submit()" novalidate="novalidate"">     
                                         <div class="form-group"> 
 
                                             <label for="user_email">E-mail do agente comunitário *
@@ -92,8 +90,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="birthdate">Data de nascimento da crian&ccedil;a</label>
-                                            <input type="text" class="form-control" name="birthdate" placeholder="2015/01/01" id="ldp-dob" ng-model="alert.dob" ui-date-mask >
-
+                                            <input type="text" class="form-control" name="birthdate" placeholder="01/12/2017" id="ldp-dob" ng-model="alert.dob"  ui-date-mask>
                                         </div>
                                         <div class="form-group">
                                             <label for="address">Endere&ccedil;o *</label>
@@ -165,15 +162,16 @@
                                             <label>Por que a criança ou adolescente está fora da escola? *</label>
                                             <p class="help-block"> Escolha o principal motivo identificado</p>
                                             <div ng-show="form.$submitted || form.alert_cause_id.$touched">
-                                              <span ng-show="form.alert_cause_id.$error.required">Causa é obrigatório.</span>
+                                                <span ng-show="form.alert_cause_id.$error.required">
+                                                     <img src="images/warning.gif" width="16" height="16"> Por favor, selecione uma das opções abaixo.
+                                                </span>
                                             </div>                                            
                                         </div>
 
                                         <div class="form-group">
-                                            <p class="causes-error"><img src="images/warning.gif" width="16" height="16"> Por favor, selecione uma das opções abaixo.</p>
                                              <div class="radio" ng-repeat="alertCause in static.getAlertCauses()">
                                             <label>
-                                                <input name="alert_cause_id" ng-model="alert.alert_cause_id" ng-value="alertCause.id" type="radio"> {{alertCause.label}}
+                                                <input name="alert_cause_id" ng-model="alert.alert_cause_id" name="alertCause" ng-required="true" ng-value="alertCause.id" type="radio"> {{alertCause.label}}
                                             </label>
                                             </div>
                                             </div>
@@ -249,6 +247,7 @@
     <script src="vendor/jquery/dist/jquery.js"></script>
     <script src="vendor/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
     <script src="js/all.js"></script>
+    <script src="js/angular-locale_pt-br.js"></script>
 
     <!-- @endif -->
     <!-- @if NODE_ENV='production' -->
