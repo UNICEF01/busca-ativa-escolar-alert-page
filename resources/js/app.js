@@ -6,13 +6,8 @@ angular.module("BuscaAtivaEscolarAlert", ['ngResource',
 ]);
 
 angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootScope, $scope, $http, Cities, StaticData, Popeye ) {
-        
-	$rootScope.isValid;
-	$rootScope.alert;
-    
     $scope.static = StaticData;
     $rootScope.class = "state-not-submitted";
-	$rootScope.message="muda?";
 
     $scope.modal = function(valid, alert) {
        
@@ -45,19 +40,12 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
     };
     
     $scope.createAlert = function () {
-    	$scope.submitted=true;
 
-        console.log($rootScope.isValid);
-
-		console.log('Startando');
-
-		if($rootScope.isValid){
-			var dateBirth = new Date($rootScope.alert.dob);
+		if($rootScope.isValid){			
 			console.log('success');
 			var data = {
 				email: $rootScope.alert.email,
 				name: $rootScope.alert.name,
-				dob: dateBirth,
 				place_reference: $rootScope.alert.place_reference,
 				alert_cause_id: $rootScope.alert.alert_cause_id,
 				mother_name: $rootScope.alert.mother_name,
@@ -68,6 +56,13 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
 		        place_uf: $rootScope.alert.place_uf
 			};
 
+			if($rootScope.alert.dob !== null){	
+				var dateBirth = new Date($rootScope.alert.dob);
+				dateBirth = dateBirth.toLocaleDateString("eu-ES");
+	
+				console.log(dateBirth);
+				data.dob= dateBirth;
+			}
 
 	 		var config = {
 	 			headers:  {
@@ -76,12 +71,11 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
 			};
 
 	        return $http.post("http://api.busca-ativa-escolar.dev.lqdi.net/api/v1/integration/lp/alert_spawn", JSON.stringify(data), config).then(function(success) {
-	             if(success["data"].reason=="invalid_user"){
-	             	console.log(success["data"].reason);
-	             	console.log(success["data"].reason=="invalid_user");
-	             	$scope.message="Sorry bro";
+	             if(success.data.reason=="invalid_user"){
+	             	console.log(success.data.reason);
+	             	console.log(success.data.reason=="invalid_user");
 	     			 Popeye.closeCurrentModal();
-	     			 alert("Usuario não cadastrado")
+	     			 alert("Usuario não cadastrado");
 	             }else{
 			           $rootScope.class = "state-submitted-successfully";
 			           Popeye.closeCurrentModal();
@@ -90,16 +84,14 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
 	        });
     	}else{
 			Popeye.closeCurrentModal();
-            console.log('Fail');
-
- 
+            console.log('Invalid form');
     	}
     
     };
 });
 
 angular.module('BuscaAtivaEscolarAlert').factory('Cities', function Cities($resource) {
-			headers=  {}
+			headers=  {};
 
      return $resource('http://api.busca-ativa-escolar.dev.lqdi.net/api/v1/cities/:id', {id: '@id'}, {
          find: {method: 'GET', headers: headers},
