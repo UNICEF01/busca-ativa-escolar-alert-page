@@ -56,7 +56,9 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
 		        place_uf: $rootScope.alert.place_uf
 			};
 
-			if($rootScope.alert.dob !== null){	
+				console.log($rootScope.alert.dob );
+
+			if(typeof $rootScope.alert.dob !== "undefined") {
 				var dateBirth = new Date($rootScope.alert.dob);
 				dateBirth = dateBirth.toLocaleDateString("eu-ES");
 	
