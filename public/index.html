@@ -116,7 +116,7 @@
                                         <div class="form-group">
 
                                         <label class="control-label" for="ldp-uf">UF*</label>
-                                            <select class="form-control" id="ldp-uf" name="uf" ng-model="alert.place_uf" ng-options="uf.code as uf.code for uf in static.getUFs()" ng-required="true"></select>
+                                            <select class="form-control" id="ldp-uf" name="uf" ng-model="alert.place_uf" ng-options="uf.code as uf.code for uf in static.getUFs() | orderObjectBy: 'code'">" ng-required="true"></select>
                                             <div ng-show="form.$submitted || form.uf.$touched">
                                                  <span ng-show="form.uf.$error.required">UF é obrigatório.</span>
                                             </div>
