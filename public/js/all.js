@@ -5,9 +5,21 @@ angular.module("BuscaAtivaEscolarAlert", ['ngResource',
             'pathgather.popeye'
 ]);
 
-angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootScope, $scope, $http, Cities, StaticData, Popeye) {
+angular.module('BuscaAtivaEscolarAlert')
+    .service('config', function () {
+     var APIEndpoint = "https://api.buscaativaescolar.org.br/api/v1/";
+
+        return {
+            getAPIEndpoint: function () {
+                return APIEndpoint;
+            },
+        };
+    });
+
+angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootScope, $scope, $http, Cities, StaticData, Popeye, config) {
     $scope.static = StaticData;
     $rootScope.class = "state-not-submitted";
+    $scope.endpoint = config.getAPIEndpoint();
 
     $scope.modal = function(valid, alert) {
        
@@ -71,8 +83,7 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
 					'Content-Type': 'application/json'
 				}
 			};
-
-	        return $http.post("http://api.busca-ativa-escolar.dev.lqdi.net/api/v1/integration/lp/alert_spawn", JSON.stringify(data), config).then(function(success) {
+	        return $http.post($scope.endpoint + "integration/lp/alert_spawn", JSON.stringify(data), config).then(function(success) {
 	             if(success.data.reason=="invalid_user"){
 	             	console.log(success.data.reason);
 	             	console.log(success.data.reason=="invalid_user");
@@ -110,28 +121,29 @@ angular.module('BuscaAtivaEscolarAlert')
                 return filtered;
             };
     })
-    .factory('Cities', function Cities($resource) {
+    .factory('Cities', function Cities($resource, config) {
 			headers=  {};
 
-     return $resource('http://api.busca-ativa-escolar.dev.lqdi.net/api/v1/cities/:id', {id: '@id'}, {
+     return $resource(config.getAPIEndpoint() + 'cities/:id', {id: '@id'}, {
          find: {method: 'GET', headers: headers},
-         search: {url: 'http://api.busca-ativa-escolar.dev.lqdi.net/api/v1/cities/search', method: 'POST', headers: headers},
-         checkIfAvailable: {url: 'http://api.busca-ativa-escolar.dev.lqdi.net/api/v1/cities/check_availability', method: 'POST', headers: headers},
+         search: {url: config.getAPIEndpoint() + 'cities/search', method: 'POST', headers: headers},
+         checkIfAvailable: {url: config.getAPIEndpoint() + 'cities/check_availability', method: 'POST', headers: headers},
      
-     })
+     });
      
 });
 
-angular.module('BuscaAtivaEscolarAlert').factory('StaticData', function StaticData($rootScope, $http) {
+angular.module('BuscaAtivaEscolarAlert').factory('StaticData', function StaticData($rootScope, $http, config) {
 
             var data = {};
             var self = this;
 
-            var dataFile = "http://api.busca-ativa-escolar.dev.lqdi.net/api/v1/static/static_data?version=latest";
+            var dataFile = config.getAPIEndpoint() + "static/static_data?version=latest";
             var $promise = {};
 
             function fetchLatestVersion() {
                 console.log("[platform.static_data] Downloading latest static data definitions...");
+                console.log(dataFile);
                 $promise = $http.get(dataFile).then(onFetch);
             }
 

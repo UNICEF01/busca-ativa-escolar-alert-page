@@ -2274,16 +2274,6 @@ html, body {
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); }
 
-.popeye-modal {
-  color: #000; }
-
-.popeye-modal-container .popeye-modal {
-  font-style: #000;
-  width: 30%;
-  min-width: 0;
-  min-height: 0;
-  padding: 1.5em 0.5em 0.5em 0.5em; }
-
 body {
   color: #FFF;
   font-family: 'Open Sans', Arial, sans-serif;
@@ -2305,8 +2295,6 @@ section.box {
           text-decoration: none; }
     section.box #success-screen img {
       margin-left: 20px; }
-  section.box form.ng-submitted input.ng-invalid-required, section.box form.ng-submitted select.ng-invalid-required {
-    border: 1px solid red; }
   section.box .box-container {
     max-width: 560px;
     /* IE 6-8 Fallback */
