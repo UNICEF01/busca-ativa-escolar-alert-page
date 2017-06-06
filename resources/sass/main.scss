@@ -68,7 +68,6 @@
           box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
 
-
 body {
   color: $body-color;
   font-family: 'Open Sans', Arial, sans-serif;
@@ -88,8 +87,8 @@ section.box {
 
       a {
         font-size: 16px;
-        color: #fff;
-        text-decoration: underline;
+        color: #fff;       
+        text-decoration: none;
 
         &:hover {
           text-decoration: none;
@@ -103,7 +102,6 @@ section.box {
 
     padding-bottom: 20px;
   }
-    
 
   .box-container {
     max-width: 560px;
@@ -359,16 +357,34 @@ section.box {
   margin-left: auto;
   margin-right: auto;
 }
-footer {
-    border-top: 15px solid #0c5e8e;
-    padding: 25px 0;
-    background-color: #fff;
+.unicef-logo{
+  margin-top: 10px;
+  height: 36px;
 }
-    .unicef-logo{
-      margin-top: 10px;
-      height: 40px;
-    }
+.tim-logo{
+  height: 22px;
+}
+.row-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
 
+.row-flex > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  border-top: 15px solid #0c5e8e;
+  background-color: #fff;
+  padding: 25px 0;
+  img{
+    margin-bottom: 20px;
+  }
+}
 @media (max-width: $screen-xs-max) {
   section.box {
     .form-group,
