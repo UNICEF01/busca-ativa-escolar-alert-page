@@ -2552,23 +2552,19 @@ section.box {
   margin-left: auto;
   margin-right: auto; }
 
-.unicef-logo {
-  margin-top: 10px;
-  height: 36px; }
+.logo-partners {
+  margin-top: 21px; }
+
 .row-flex {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display:         flex;
-  flex-wrap: wrap;
-}
+  display: flex;
+  flex-wrap: wrap; }
 
 .row-flex > [class*='col-'] {
   display: flex;
-  flex-direction: column;
-}
-.tim-logo {
-  height: 22px; }
+  flex-direction: column; }
 
 footer {
   border-top: 15px solid #0c5e8e;
