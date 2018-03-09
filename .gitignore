@@ -3,3 +3,4 @@ node_modules
 .sass-cache
 public/vendor
 .DS_Store
+public/environment.js

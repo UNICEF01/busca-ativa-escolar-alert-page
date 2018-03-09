@@ -9,6 +9,12 @@ angular.module('BuscaAtivaEscolarAlert')
     .service('config', function () {
      var APIEndpoint = "https://api.buscaativaescolar.org.br/api/v1/";
 
+     if(window.ENVIRONMENT) {
+     	APIEndpoint = window.ENVIRONMENT.ENDPOINT_URL;
+     }
+
+     console.log("[env] Using endpoint: ", APIEndpoint, window.ENVIRONMENT);
+
         return {
             getAPIEndpoint: function () {
                 return APIEndpoint;

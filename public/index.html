@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="vendor/angular-ui-select/dist/select.css" />
     <link rel="stylesheet" href="vendor/angular-bootstrap/ui-bootstrap-csp.css" />
-    <link rel="stylesheet" href="vendor/angular-popeye/release/popeye.css"></script>
+    <link rel="stylesheet" href="vendor/angular-popeye/release/popeye.css" />
 
-    <!--[if lt IE 9]>
+	<!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
     <style type="text/css">
         form.ng-submitted input.ng-invalid-required, form.ng-submitted select.ng-invalid-required{
              border: 1px solid red;
@@ -26,13 +27,11 @@
         }
 
         .popeye-modal-container .popeye-modal {
-            font-style: #000;
             width: 30%;
             min-width: 0;
             min-height: 0;
             padding: 1.5em 0.5em 0.5em 0.5em;
         }
-
     </style>
 
 </head>
@@ -205,30 +204,30 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="row row-flex text-center">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <a href="http://unicef.org.br/?utm_source=PageWeb_BuscaAtivaEscolar" target="_blank">
-                        <img  class="unicef-logo" src="images/logo_unicef.png"  alt="UNICEF" title="UNICEF">
+                        <img src="images/logo_unicef.png" class="logo-partners" height="40px" alt="UNICEF" title="UNICEF">
                     </a>
                 </div>
 
-                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <a href="https://institutotim.org.br/?utm_source=PageWeb_BuscaAtivaEscolar" target="_blank">
+                        <img  src="images/logo_instituto_tim.png" class="logo-partners" height="28px"  alt="Instituto TIM" title="Instituto TIM">
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <a href="https://undime.org.br/?utm_source=PageWeb_BuscaAtivaEscolar" target="_blank">
-                        <img src="images/logo_undime.png"  alt="UNDIME" title="UNDIME">
+                        <img src="images/logo_undime.png" alt="UNDIME" title="UNDIME">
                     </a>
                 </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <a href="http://www.congemas.org.br/?utm_source=PageWeb_BuscaAtivaEscolar" target="_blank">
-                       <img class="img-responsive"  src="images/logo_congemas.png" alt="CONGEMAS" title="CONGEMAS" >
+                       <img src="images/logo_congemas.png" alt="CONGEMAS" title="CONGEMAS">
                     </a>
-                </div>
-
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <a href="https://institutotim.org.br/?utm_source=PageWeb_BuscaAtivaEscolar" target="_blank">desenvolvido por
-                        <img src="images/logo_instituto_tim.png" height="27px" alt="Instituto TIM" title="Instituto TIM">
-                    </a>
-                </div>
+                </div>               
             </div>
         </div>
     </footer>
@@ -242,6 +241,7 @@
     <script src="vendor/angular-popeye/release/popeye.js"></script>
     <script src="vendor/jquery/dist/jquery.js"></script>
     <script src="vendor/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="environment.js"></script>
     <script src="js/all.js"></script>
     <script src="js/angular-locale_pt-br.js"></script>
 
