@@ -4,3 +4,4 @@ node_modules
 public/vendor
 .DS_Store
 public/environment.js
+.idea
