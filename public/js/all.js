@@ -68,7 +68,7 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
     $scope.createAlert = function () {
 
         if ($rootScope.isValid) {
-            console.log('success');
+
             var data = {
                 email: $rootScope.alert.email,
                 name: $rootScope.alert.name,
@@ -82,15 +82,13 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
                 place_uf: $rootScope.alert.place_uf
             };
 
-            console.log($rootScope.alert.dob);
-
-            if (typeof $rootScope.alert.dob !== "undefined") {
-                var dateBirth = new Date($rootScope.alert.dob);
-                dateBirth = dateBirth.toLocaleDateString("eu-ES");
-
-                console.log(dateBirth);
-                data.dob = dateBirth;
-            }
+            // if (typeof $rootScope.alert.dob !== "undefined") {
+            //     var dateBirth = new Date($rootScope.alert.dob);
+            //     dateBirth = dateBirth.toLocaleDateString("eu-ES");
+            //
+            //     console.log(dateBirth);
+            //     data.dob = dateBirth;
+            // }
 
             var config = {
                 headers: {
@@ -109,6 +107,8 @@ angular.module("BuscaAtivaEscolarAlert").controller("formCtrl", function ($rootS
                     console.log(success);
                 }
             });
+
+
         } else {
             Popeye.closeCurrentModal();
             console.log('Invalid form');
